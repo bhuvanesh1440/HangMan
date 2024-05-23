@@ -284,3 +284,18 @@ window.addEventListener('click', (event) => {
     rulesModal.style.display = 'none';
   }
 });
+
+// mobile screen 
+const letterButtons = document.querySelectorAll('.letter-button');
+
+letterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const letter = button.innerText.toLowerCase();
+    performActionForLetter(letter);
+  });
+  button.addEventListener('touchstart', (event) => {
+    event.preventDefault(); // Prevent default touch behavior
+    const letter = button.innerText.toLowerCase();
+    performActionForLetter(letter);
+  });
+});
