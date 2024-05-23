@@ -1,0 +1,6 @@
+(50,370,300,20)  ---->Base   -10 belowspace 
+ 
+(100,50,20,270)  ---->straight rectangle  corected:(100,50,20,320)
+
+(120,70,120,10)  ----> top side rectangle
+
