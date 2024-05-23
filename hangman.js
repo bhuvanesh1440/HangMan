@@ -140,7 +140,7 @@ const performAction = (event) => {
   }
   if (selectedWord.includes(keyPressed)) {
     updateScore();
-    canvas.style.boxShadow = "0 0 50px green"; // Change box-shadow to green for correct guess
+    canvas.style.boxShadow = "0 0 50px #22bb33"; // Change box-shadow to green for correct guess
   } else {
     attempts++;
     canvas.style.boxShadow = "0 0 50px red"; // Change box-shadow to red for wrong guess

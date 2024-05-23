@@ -19,8 +19,9 @@ canvas {
 }
 
 .success {
-  color: green;
+  color: #22bb33;
 }
+
 
 .container {
   display: flex;
