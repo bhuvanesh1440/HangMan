@@ -285,17 +285,3 @@ window.addEventListener('click', (event) => {
   }
 });
 
-// mobile screen 
-const letterButtons = document.querySelectorAll('.letter-button');
-
-letterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const letter = button.innerText.toLowerCase();
-    performActionForLetter(letter);
-  });
-  button.addEventListener('touchstart', (event) => {
-    event.preventDefault(); // Prevent default touch behavior
-    const letter = button.innerText.toLowerCase();
-    performActionForLetter(letter);
-  });
-});
