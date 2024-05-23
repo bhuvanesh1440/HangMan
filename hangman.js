@@ -221,10 +221,10 @@ const revealLetter = () => {
       helpCount--; // Decrease help count after successful use
       if (helpCount === 1) {
         // Change help button text to "+1" and add icon
-        helpButton.innerHTML = '<i class="fas fa-question"></i> +1';
+        helpButton.innerHTML = '<i class="fas fa-question"></i> Help +1';
       } else if (helpCount === 0) {
         // Change help button text to "0" and disable it
-        helpButton.innerHTML = '<i class="fas fa-question"></i> 0';
+        helpButton.innerHTML = '<i class="fas fa-question"></i> Help 0';
         helpButton.disabled = true;
       }
     }
