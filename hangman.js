@@ -233,9 +233,9 @@ const continueGame = () => {
   attempts = 0; // Reset attempts to 0 for the new word
   guessedLetters = []; // Clear guessed letters for the new word
   msg.innerText = ""; // Clear previous messages
-  score.innerText = `Score: ${points}`; // Update score display
+  score.innerText = `Score🏆: ${points}`; // Update score display
   time = 60; // Reset time to 60 seconds
-  timer.innerText = `Time: ${time}`; // Update time display
+  timer.innerText = `Time🕒 : ${time}`; // Update time display
 
   clearInterval(timerInterval); // Clear the previous timer interval
   timerInterval = setInterval(updateTimer, 1000); // Start a new timer
@@ -249,7 +249,7 @@ let points = 0;
 const updateScore = () => {
   points++;
   // Update the score display on the page
-  score.innerText = `Score: ${points}`;
+  score.innerText = `Score🏆: ${points}`;
 };
 
 // Implementing Time
@@ -299,7 +299,7 @@ const start = () => {
 };
 
 const updateTimer = () => {
-  timer.innerText = `Time: ${time}`;
+  timer.innerText = `Time🕒 : ${time}`;
   if (time === 0) {
     clearInterval(timerInterval);
     playTimeUpSound()
