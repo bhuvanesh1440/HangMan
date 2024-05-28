@@ -8,13 +8,21 @@ const helpButton = document.getElementById("helpButton");
 const startButton = document.getElementById("startButton");
 const retryButton = document.getElementById("retryButton");
 
+// sounds
+const wrongSound = document.getElementById("wrongSound");
+const winSound = document.getElementById("winSound");
+const loseSound = document.getElementById("loseSound");
+const timeUpSound = document.getElementById("timeUpSound");
+const click = document.getElementById("click");
+const correct =document.getElementById("correct");
+
 const wordsToGuess = [
   ["apple", "a fruit"],
   ["elephant", "an animal"],
   ["vijaywada", "city name"],
   ["programming", "computer science"],
   ["beach", "a seaside location"],
-  ["mountain", "a natural elevation"]
+  ["mountain", "a natural elevation"],
 ];
 const canvas = document.getElementById("hangmanCanvas");
 const ctx = canvas.getContext("2d");
@@ -133,38 +141,86 @@ const updateWord = () => {
   displayWord = updated;
   word.innerText = updated;
 };
+
+// Functions to play sounds
+const playWrongSound = () => {
+  wrongSound.play();
+};
+
+const playCorrectSound = () => {
+  correct.play();
+};
+
+const playWinSound = () => {
+  winSound.play();
+};
+
+const playLoseSound = () => {
+  loseSound.play();
+};
+
+const playTimeUpSound = () => {
+  timeUpSound.play();
+};
+
+const playButtonPressSound = () => {
+  click.play();
+};
+
+
+
+document.getElementById("startButton").addEventListener("click", playButtonPressSound);
+document.getElementById("retryButton").addEventListener("click", playButtonPressSound);
+document.getElementById("helpButton").addEventListener("click", playButtonPressSound);
+
+
+
+
 const performAction = (event) => {
   const keyPressed = event.key.toLowerCase();
   if (guessedLetters.includes(keyPressed)) {
     return;
   }
   if (selectedWord.includes(keyPressed)) {
+    playCorrectSound();
     updateScore();
-    canvas.style.boxShadow = "0 0 50px #22bb33"; // Change box-shadow to green for correct guess
+    canvas.style.boxShadow = "0 0 100px #22bb33"; // Change box-shadow to green for correct guess
   } else {
     attempts++;
-    canvas.style.boxShadow = "0 0 50px red"; // Change box-shadow to red for wrong guess
+    canvas.style.boxShadow = "0 0 100px red"; // Change box-shadow to red for wrong guess
+    playWrongSound();
+    shakeCanvas();
   }
   guessedLetters.push(keyPressed.toLowerCase());
   // console.log({attempts, guessedLetters})
   updateWord();
   drawHangman();
   if (displayWord.replace(/ /g, "") === selectedWord) {
-    msg.innerText = "You won";
+    msg.innerText = "🎉🥳You won🎉🥳";
     msg.className = "success";
     console.log("win");
     clearInterval(timerInterval);
+    playWinSound();
     setTimeout(() => {
       continueGame();
     }, 1000); // Call continueGame function to start the next word
   }
   if (attempts === 7) {
-    msg.innerText = "Game over";
+    msg.innerText = "😔Game over👎 ";
 
     msg.className = "warning";
     clearInterval(timerInterval);
     retryButton.style.display = "block";
+    playLoseSound();
   }
+};
+
+// Function to shake the canvas
+const shakeCanvas = () => {
+  canvas.classList.add("shaking"); // Add the shaking class
+  setTimeout(() => {
+    canvas.classList.remove("shaking"); // Remove the shaking class after 0.5s
+  }, 500);
 };
 
 document.addEventListener("keydown", performAction);
@@ -221,10 +277,10 @@ const revealLetter = () => {
       helpCount--; // Decrease help count after successful use
       if (helpCount === 1) {
         // Change help button text to "+1" and add icon
-        helpButton.innerHTML = '<i class="fas fa-question"></i> Help +1';
+        helpButton.innerHTML = '<i class="fas fa-lightbulb" id="bulbIcon"></i> +1';
       } else if (helpCount === 0) {
         // Change help button text to "0" and disable it
-        helpButton.innerHTML = '<i class="fas fa-question"></i> Help 0';
+        helpButton.innerHTML = '<i class="fas fa-lightbulb" id="bulbIcon"></i>  0';
         helpButton.disabled = true;
       }
     }
@@ -246,8 +302,9 @@ const updateTimer = () => {
   timer.innerText = `Time: ${time}`;
   if (time === 0) {
     clearInterval(timerInterval);
+    playTimeUpSound()
     // End the game
-    msg.innerText = "Time's up! Game over.";
+    msg.innerText = "⌛Time's up! Game over😔";
     msg.className = "warning";
     retryButton.style.display = "block";
   } else {
@@ -260,28 +317,24 @@ const retryGame = () => {
   retryButton.style.display = "none";
 };
 
-
-
 // Show the modal with rules initially
-const rulesModal = document.getElementById('rulesModal');
-rulesModal.style.display = 'block';
+const rulesModal = document.getElementById("rulesModal");
+rulesModal.style.display = "block";
 
 // Hide the modal and start the game after a delay
 setTimeout(() => {
-  rulesModal.style.display = 'none';
-  
-}, 10000); 
+  rulesModal.style.display = "none";
+}, 10000);
 
 // Close the modal if the close button is clicked
-const closeBtn = document.querySelector('.close');
-closeBtn.addEventListener('click', () => {
-  rulesModal.style.display = 'none';
+const closeBtn = document.querySelector(".close");
+closeBtn.addEventListener("click", () => {
+  rulesModal.style.display = "none";
 });
 
 // Close the modal if the user clicks outside the modal content
-window.addEventListener('click', (event) => {
+window.addEventListener("click", (event) => {
   if (event.target === rulesModal) {
-    rulesModal.style.display = 'none';
+    rulesModal.style.display = "none";
   }
 });
-

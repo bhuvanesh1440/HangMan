@@ -3,29 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>Hangman</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <link rel="stylesheet" href="hangman.css" />
   </head>
   <body>
-    <h1>Hangman Game</h1>
+    <audio id="wrongSound" src="./sounds/Buzzer_sound.mp3"></audio>
+    <audio id="correct" src="./sounds/correct.mp3"></audio>
+    <audio id="winSound" src="./sounds/success_msg.mp3"></audio>
+    <audio id="loseSound" src="./sounds/failure.wav"></audio>
+    <audio id="timeUpSound" src="./sounds/clock.wav"></audio>
+    <audio id="click" src="./sounds/click.wav"></audio>
 
+    <h1>Hangman Game</h1>
 
     <div id="rulesModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Rules:</h2>
         <ol>
-          <li>Guess the word by selecting letters.</li>
+          <li id="rule">Guess the word by selecting letters.</li>
           <li>You have 7 attempts to guess the word correctly.</li>
-          <li>If you guess a letter correctly, it will be revealed in the word.</li>
-          
+          <li>
+            If you guess a letter correctly, it will be revealed in the word.
+          </li>
         </ol>
       </div>
     </div>
-    
-    
+
     <div class="container">
       <div class="left">
         <div class="top">
@@ -36,11 +45,17 @@
         <p id="word">_ _ _ _ _ _</p>
         <p id="msg"></p>
         <div class="low">
-          <button id="startButton" onclick="start()"><i class="fas fa-play"></i> Start Game</button>
-          <button id="retryButton" style="display: none" onclick="retryGame()"><i class="fas fa-redo"></i> Retry</button>
+          <button id="startButton" onclick="start()">
+            <i class="fas fa-play"></i> Start Game
+          </button>
+          <button id="retryButton" style="display: none" onclick="retryGame()">
+            <i class="fas fa-redo"></i> Retry
+          </button>
         </div>
         <div class="help">
-          <button id="helpButton" onclick="revealLetter()"><i class="fas fa-question"></i>  Help +2</button>
+          <button id="helpButton" onclick="revealLetter()">
+            <i class="fas fa-lightbulb" id="bulbIcon"></i> +2
+          </button>
         </div>
       </div>
       <div class="right">
