@@ -108,6 +108,13 @@ h1 {
   color: cyan;
   animation: moveUp 1s ease-out;
 }
+#attempts{
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: cyan;
+  animation: moveUp 1s ease-out;
+
+}
 
 ul, ol {
   font-size: 20px; 

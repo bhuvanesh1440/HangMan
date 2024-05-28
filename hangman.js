@@ -174,7 +174,8 @@ document.getElementById("retryButton").addEventListener("click", playButtonPress
 document.getElementById("helpButton").addEventListener("click", playButtonPressSound);
 
 
-
+const attemptsDisplay = document.getElementById("attempts");
+let attemptsLeft = 7;
 
 const performAction = (event) => {
   const keyPressed = event.key.toLowerCase();
@@ -187,6 +188,8 @@ const performAction = (event) => {
     canvas.style.boxShadow = "0 0 100px #22bb33"; // Change box-shadow to green for correct guess
   } else {
     attempts++;
+    attemptsLeft--; // Decrease attempts count for wrong guess
+    attemptsDisplay.innerText = `Attempts🚨: ${attemptsLeft}`;
     canvas.style.boxShadow = "0 0 100px red"; // Change box-shadow to red for wrong guess
     playWrongSound();
     shakeCanvas();
