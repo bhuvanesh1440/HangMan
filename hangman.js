@@ -206,7 +206,7 @@ const performAction = (event) => {
     }, 1000); // Call continueGame function to start the next word
   }
   if (attempts === 7) {
-    msg.innerText = "😔Game over👎 ";
+    msg.innerText = "😔Game over💀! ";
 
     msg.className = "warning";
     clearInterval(timerInterval);
@@ -304,7 +304,7 @@ const updateTimer = () => {
     clearInterval(timerInterval);
     playTimeUpSound()
     // End the game
-    msg.innerText = "⌛Time's up! Game over😔";
+    msg.innerText = "⌛Time's up! Game over💀 ";
     msg.className = "warning";
     retryButton.style.display = "block";
   } else {
