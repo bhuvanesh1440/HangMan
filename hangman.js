@@ -201,6 +201,8 @@ const performAction = (event) => {
   if (displayWord.replace(/ /g, "") === selectedWord) {
     msg.innerText = "🎉🥳You won🎉🥳";
     msg.className = "success";
+    attemptsLeft=7
+    attemptsDisplay.innerText = `Attempts🚨: ${attemptsLeft}`;
     console.log("win");
     clearInterval(timerInterval);
     playWinSound();
@@ -228,22 +230,23 @@ const shakeCanvas = () => {
 
 document.addEventListener("keydown", performAction);
 
-// Add logic to continue the game after winning:
+// to continue the game after winning:
 const continueGame = () => {
   console.log("continuing...");
-  initializeGame(); // Reset the game state
+  initializeGame(); // Reset  game
 
-  attempts = 0; // Reset attempts to 0 for the new word
-  guessedLetters = []; // Clear guessed letters for the new word
-  msg.innerText = ""; // Clear previous messages
+  attempts = 0; 
+  attemptsLeft=7
+  guessedLetters = []; 
+  msg.innerText = ""; 
   score.innerText = `Score🏆: ${points}`; // Update score display
   time = 60; // Reset time to 60 seconds
-  timer.innerText = `Time🕒 : ${time}`; // Update time display
+  timer.innerText = `Time🕒 : ${time}`; 
 
-  clearInterval(timerInterval); // Clear the previous timer interval
-  timerInterval = setInterval(updateTimer, 1000); // Start a new timer
+  clearInterval(timerInterval); // Clear previous timer 
+  timerInterval = setInterval(updateTimer, 1000); // Start timer
 
-  drawHangman(); // Redraw the initial hangman state
+  drawHangman(); // Redraw 
 };
 
 // implementing score
@@ -251,7 +254,7 @@ let points = 0;
 
 const updateScore = () => {
   points++;
-  // Update the score display on the page
+
   score.innerText = `Score🏆: ${points}`;
 };
 
